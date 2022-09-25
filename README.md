@@ -3,7 +3,7 @@
 
 Display a simple timer in terminal. 
 
-The timer is redrawn every second. When time is up, the terminal will beep 5 times and a message will be displayed.
+The timer is redrawn every second. When time is up, a message will be displayed and the terminal will beep 5 times.
 
 ![](demo.png)
 
