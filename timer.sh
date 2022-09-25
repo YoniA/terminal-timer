@@ -12,9 +12,11 @@ remaining_time=$total_seconds
 for ((i=1;i<=$total_seconds;i++)); do
 	clear
 	echo "Time left: " | figlet
-	hours=$((remaining_time/3600))
-	minutes=$((remaining_time/60))
-	seconds=$((remaining_time%60))
+	hours=$((remaining_time / 3600))
+	minutes=$((remaining_time / 60))
+	seconds=$((remaining_time % 60))
+
+	# pad with zeroes when appropriate
 	#hours=$([[ $hours -lt 10 ]] && echo "0${hours}" || echo "${hours}")
 	minutes=$([[ $minutes -lt 10 ]] && echo "0${minutes}" || echo "${minutes}")
 	seconds=$([[ $seconds -lt 10 ]] && echo "0${seconds}" || echo "${seconds}")
