@@ -15,6 +15,7 @@ for (( i=1;i<=$total_seconds;i++ )); do
 	echo "Time left: " | figlet
 	hours=$((remaining_time / 3600))
 	minutes=$((remaining_time / 60))
+	minutes=$((minutes % 60))
 	seconds=$((remaining_time % 60))
 
 	# pad with zeroes when appropriate
