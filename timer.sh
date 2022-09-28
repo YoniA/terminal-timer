@@ -2,6 +2,7 @@
 
 BEL_RINGS=5
 TIME_ENDED_MSG="Time for a break!"
+WIDE_SCREEN_THRESHOLD=150
 
 # detect termminal columns size
 terminal_cols=$(stty size | awk '{print $2}')
@@ -17,10 +18,14 @@ for (( i=1;i<=$total_seconds;i++ )); do
 	seconds=$((remaining_time % 60))
 
 	# pad with zeroes when appropriate
-	#hours=$([[ $hours -lt 10 ]] && echo "0${hours}" || echo "${hours}")
 	minutes=$([[ $minutes -lt 10 ]] && echo "0${minutes}" || echo "${minutes}")
 	seconds=$([[ $seconds -lt 10 ]] && echo "0${seconds}" || echo "${seconds}")
-	#echo "${hours} : ${minutes} : ${seconds}" | figlet -f doh
+
+	# if terminal window is wide enough - pad also hours with zero
+	if [[ $terminal_cols -gt $WIDE_SCREEN_THRESHOLD ]]; then
+		hours=$([[ $hours -lt 10 ]] && echo "0${hours}" || echo "${hours}")
+	fi
+	
 	echo "${hours}:${minutes}:${seconds}" | figlet -w $terminal_cols -f doh
 	((remaining_time--))
 	sleep 1
