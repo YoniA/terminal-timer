@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 BEL_RINGS=5
 TIME_ENDED_MSG="Time for a break!"
@@ -9,7 +9,7 @@ terminal_cols=$(stty size | awk '{print $2}')
 read -p "Enter time in seconds: " total_seconds
 
 remaining_time=$total_seconds
-for ((i=1;i<=$total_seconds;i++)); do
+for (( i=1;i<=$total_seconds;i++ )); do
 	clear
 	echo "Time left: " | figlet
 	hours=$((remaining_time / 3600))
