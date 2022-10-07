@@ -7,7 +7,16 @@ WIDE_SCREEN_THRESHOLD=150
 # detect termminal columns size
 terminal_cols=$(stty size | awk '{print $2}')
 
-read -p "Enter time in seconds: " total_seconds
+echo "Usage: Enter time to measure in the format hh:mm:ss"
+echo "Examples of legal inputs: 00:20:00, 01:30:00\n"
+read -p "Enter time: " raw_time
+
+raw_hours=$(echo $raw_time | awk -F: '{print $1}')
+raw_minutes=$(echo $raw_time | awk -F: '{print $2}')
+raw_seconds=$(echo $raw_time | awk -F: '{print $3}')
+
+total_seconds=$((raw_seconds + raw_minutes*60 + raw_hours*3600))
+echo $total_seconds
 
 remaining_time=$total_seconds
 for (( i=1;i<=$total_seconds;i++ )); do
